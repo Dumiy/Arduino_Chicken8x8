@@ -250,7 +250,6 @@ void loop() {
       if(HIGHSCORE < score)
         HIGHSCORE = score;
       EEPROM_writeAnything(0,HIGHSCORE);
-      score = 0;
   }
   if ( ok == 1 && conditioner == 0 && semafor == 1){
         lcd.clear();
@@ -273,14 +272,17 @@ void loop() {
         conditioner = 1;
         }
         restartJoc();
+        score = 0;
      }
   
   if ( ok == 0 && vieti != 0 && semafor == 0){
     lcd.clear();
     lcd.setCursor(3, 0);
     lcd.print("GAME OVER");
-    lcd.setCursor(2, 1);
-    lcd.print("KEEP PRESSED");
+    lcd.setCursor(1,1);
+    lcd.print("LIFES :");
+    lcd.print(vieti);
+    lcd.print(" REMAINING");
     tone(BUZZER, 100,100);
     delay(100);
     tone(BUZZER, 500,100);
